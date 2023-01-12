@@ -1,5 +1,5 @@
-#Defines the image we will use as the basis for our container. 
-FROM node:16.18.1-alpine
+#Defines the image we will use as the basis for our container. In this context, we use Node Version 16.13.2-alpine3.15
+FROM  node:16.13.2-alpine3.15 AS base
 
 # Command that sets the working directory for the application
 WORKDIR /usr/src/app/client

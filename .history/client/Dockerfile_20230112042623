@@ -1,4 +1,6 @@
-#Defines the image we will use as the basis for our container. 
+#Defines the image we will use as the basis for our container. In this context, we use Node Version 16.13.2-alpine3.15
+
+
 FROM node:16.18.1-alpine
 
 # Command that sets the working directory for the application
