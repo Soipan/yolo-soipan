@@ -1,0 +1,20 @@
+#Defines the image we will use as the basis for our container. In this context, we use Node Version 16.13.2-alpine3.15npm
+FROM  node:16.13.2-alpine3.15 AS base
+
+# Command that sets the working directory for the application
+WORKDIR /usr/src/app/backend
+
+# A wildcard is used to ensure both package.json AND package-lock.json are copied to the working directory
+COPY package.json* ./
+
+ #Command to install all the required, debug, and execute commands in the container. 
+RUN npm install 
+
+#Command ensures all the files in the current directory are copied to the app directory
+COPY . .
+
+#Tells Docker which ports the container should listen on during runtime.
+EXPOSE 5000 
+
+#Specifies the command that should be executed when the docker container starts.
+CMD [ "npm",  "start" ]
