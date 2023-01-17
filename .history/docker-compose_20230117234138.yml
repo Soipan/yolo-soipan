@@ -1,7 +1,6 @@
- 
- version: '3.1'
+version: '3.1'
 
- services:
+services:
 
   mongo:
     image: mongo
@@ -48,7 +47,7 @@
     
 
   frontend:
-    image: yolo-frontend
+    image: nama
     build: 
       context: client
       dockerfile: Dockerfile

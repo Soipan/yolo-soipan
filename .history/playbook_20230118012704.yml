@@ -1,0 +1,78 @@
+---
+- hosts: all
+  become: True
+
+  pre_tasks:
+   - name: Update apt cache if needed.
+     apt: update_cache=yes cache_valid_time=3600
+
+  tasks:
+    
+
+    - name: install dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg-agent
+          - software-properties-common
+        state: latest
+        update_cache: yes
+
+    - name: GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: repository docker
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+
+    - name: install docker
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+        update_cache: yes
+
+    - name: adding users to group docker
+      user:
+        name: '{{ item }}'
+        groups: docker
+        append: yes
+      loop:
+        - user1
+        - user2
+
+    - name: Install docker-compose
+      get_url:
+        url : https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '755'
+
+    - name: Install MongoDB | Fetch GPG key 
+      sudo: True
+      command: apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 
+      tags: mongodb
+
+    - name: MongoDB | Add 10 gen repository 
+      sudo: True
+      shell: 
+       echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/10gen.list creates=/etc/apt/sources.list.d/10gen.list
+    - name: MongoDB | Install latest mongodb 
+      sudo: True
+      apt: pkg=mongodb-10gen update-cache=yes 
+      tags: mongodb
+    - name: MongoDB | Run mongo daemon 
+      sudo: True
+      service: name=mongodb state=started 
+      tags: mongodb
+    
+     
+      
+
+

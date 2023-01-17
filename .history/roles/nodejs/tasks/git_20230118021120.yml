@@ -1,0 +1,4 @@
+- name: Setup the Git repo
+  git: repo={{ https://github.com/Soipan/yolo-soipan.git }} dest={{ app_path }} accept_hostkey=yes 
+  when: setup_git_repo 
+  tags: git

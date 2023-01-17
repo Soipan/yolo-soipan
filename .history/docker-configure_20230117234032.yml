@@ -1,0 +1,56 @@
+- hosts: localhost
+  become: true 
+
+  vars:
+  - dockerfile_folder: "Dockerfile"
+  - docker_image_name: "yolo-backend"
+  - docker_image2_name: 
+  - docker_container_name: "test_os"
+  - patting_ssh_port: "2222"
+  - patting_http_port: "80"
+  tasks:
+  - name: "Copy Docker file"
+    copy:
+     src: "{{dockerfile_folder}}"
+     dest: "/srv/"
+
+  - name: "Build docker image from Dockerfile"
+    docker_image:
+       name:  "{{docker_image_name}}"
+       build:
+         pull: yes
+         path: "/srv/{{dockerfile_folder}}/"
+       state: present
+       source: build
+  
+  - name: "launch docker container"
+    docker_container:
+       name: "{{docker_container_name}}"
+       image: "{{docker_image_name}}"
+       state: started
+       ports:
+       - "{{patting_ssh_port}}:22"
+       -  "{{patting_http_port}}:8080"
+    register: docker_info
+
+
+  - name: "Update inventory file"
+    lineinfile:
+      path: hosts
+      insertafter: '^\[containers]'
+      firstmatch: yes
+      line: "{{docker_info.ansible_facts.docker_container.NetworkSettings.IPAddress}}"
+      state: present
+
+# # play to wirte entry in ansible inventory
+# - name: "Update inventory file"
+#   hosts: localhost
+#   tags: inventory
+#   tasks:
+#   - command: cat hosts
+#     register: inventory_data
+#   - debug:
+#        var: groups.docker_host
+#   - shell: echo "{{ item }} ansible_ssh_user=docker ansible_ssh_port=5555" >> ./hosts
+#     when:  "'{{ item }} ansible_ssh_user=docker ansible_ssh_port=5555' not in inventory_data.stdout"
+#     loop: "{{groups.docker_host}}"
