@@ -6,8 +6,8 @@
     ports:
       - 3000:3000
     tty: true
-    environment:
-      DB_HOST=mongo
+     environment:
+      DB_HOST=mongodatabase
       DB_USER=admin
       DB_PASSWORD=password
     volumes:

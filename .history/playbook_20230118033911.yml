@@ -15,26 +15,26 @@
   roles: 
     - all
 
-- name: Pull image of mongo and launch container
+- name: Pull mongo and launch container
   hosts: all
   become: true
   tags: mongo
   roles:
     - mongo
 
-- name: Pull image of the backend and launch container
+- name: Pull backend and launch container
   hosts: all
   become: true
   tags: backend
   roles:
     - backend
   
-- name: Pull image of the frontend and launch container
+- name: Pull  and launch container
   hosts: all
   become: true
-  tags: client
+  tags: mongo
   roles:
-    - client
+    - mongo
 
     
     

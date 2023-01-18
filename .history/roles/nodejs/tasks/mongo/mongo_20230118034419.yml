@@ -6,7 +6,7 @@
     
 - name: Start Mongo container
   docker_container:
-      name: mongodb
+      name: mongodatabase
       image: mongo
       ports: 
         -27017:27017
@@ -15,6 +15,7 @@
         MONGO_INITDB_ROOT_PASSWORD: password
         MONGO_INITDB_DATABASE: yolomy
       volumes:
+      - ./mongo.js:/docker-entrypoint-initdb.d/mongo.js:ro
        - mongodb:/data/db
     
       state: started

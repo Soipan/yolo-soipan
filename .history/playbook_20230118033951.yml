@@ -29,7 +29,7 @@
   roles:
     - backend
   
-- name: Pull image of the frontend and launch container
+- name: Pull frontend and launch container
   hosts: all
   become: true
   tags: client

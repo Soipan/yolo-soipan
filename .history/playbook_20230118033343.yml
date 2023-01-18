@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: True
+  vars: 
+    frontend_image: 
+    backend_image: namayiana/yolo-backend:v1.0.1 
+    mongo_image: mongo
+    NODE_
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+
+  tasks:
+  
+  
+
+  
+  roles: 
+    - nodejs/meta
+    - nodejs/tasks
+
+    
+    
+     
+      
+
+

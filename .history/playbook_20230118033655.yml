@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: True
+  vars: 
+    mongo_image: mongo
+    Node_version: "16"
+    frontend_image: 
+    backend_image: namayiana/yolo-backend:v1.0.1 
+   
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+
+
+  roles: 
+    - all
+
+- name: Pull mongo and launch container
+  hosts: all
+  bec 
+
+    
+    
+     
+      
+
+
