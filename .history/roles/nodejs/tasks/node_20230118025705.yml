@@ -1,0 +1,10 @@
+---
+- name: Install Node.js (npm plus all its dependencies).
+  yum: name=npm state=present 
+
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: latest
+    update_cache: true
+  

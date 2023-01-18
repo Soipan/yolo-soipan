@@ -1,0 +1,4 @@
+---
+- name: Install Node.js (npm plus all its dependencies).
+  yum: name=npm state=present 
+

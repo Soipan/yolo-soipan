@@ -1,0 +1,27 @@
+---
+- name: Data volume creation
+  docker_volume: 
+    name: mongo_volume
+    state: present 
+    
+- name: Start Mongo container
+  docker_container:
+      name: mongodatabase
+      image: mongo
+      ports: 
+        -27017:27017
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: password
+        MONGO_INITDB_DATABASE: yolomy
+      volumes:
+       - mongodb:/data/db
+    
+      state: started
+
+- name: Confirm if container is running 
+  shell: docker password
+
+-name
+
+  

@@ -5,18 +5,14 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "generic/ubuntu2004"
-
-  #App server 
+  
   config.vm.hostname = "yolo.app"
   config.vm.network :private_network, ip: "192.168.47.7"
-
-  #Environment config
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.provider :virtualbox do |v|
     v.memory = 512
-    v.linked_clone=true
   end
 
   # Ansible provisioner.

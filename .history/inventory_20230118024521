@@ -1,0 +1,9 @@
+[yolo-soipan]
+192.168.60.4
+
+# Variables that will be applied to all servers
+[yolo:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key  
+
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'

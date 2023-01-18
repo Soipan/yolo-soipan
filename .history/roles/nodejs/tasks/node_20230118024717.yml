@@ -1,0 +1,8 @@
+---
+- name: Install Node.js (npm plus all its dependencies).
+  yum: name=npm state=present 
+
+- name: Express | Install Express 
+  sudo: yes 
+  npm: name=express global=yes 
+  tags: express

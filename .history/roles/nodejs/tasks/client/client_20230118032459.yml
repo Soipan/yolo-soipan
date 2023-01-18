@@ -1,0 +1,16 @@
+---
+- name: Run frontend container
+  docker_container:
+    name: yolo-frontend
+    image:     
+    ports:
+      - 3000:3000
+    tty: true
+    volumes:
+      - mongodb:/data/db
+    state: started
+
+- name: Add client to the network
+  docker_network:
+      - name: mongo_net
+      
