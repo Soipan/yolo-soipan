@@ -27,7 +27,7 @@
   docker_network:
     name: mongo_net
     connected: 
-      - mongo
+      - mongodatabase
     appends: true
 
   

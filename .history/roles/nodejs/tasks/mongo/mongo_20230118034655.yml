@@ -6,7 +6,7 @@
     
 - name: Start Mongo container
   docker_container:
-      name: mongo
+      name: mongodatabase
       image: mongo
       ports: 
         -27017:27017
@@ -27,7 +27,7 @@
   docker_network:
     name: mongo_net
     connected: 
-      - mongo
+      - mongodatabase
     appends: true
 
   
