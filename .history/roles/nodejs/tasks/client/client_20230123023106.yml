@@ -1,10 +1,10 @@
 ---
-- name: Run backend container
+- name: Run frontend container
   docker_container:
-    name: yolo-backend
-    image: namayiana/yolo-backend:v1.0.0  
+    name: yolo-frontend
+    image:      namayiana/yolo-frontend:v1.0.0
     ports:
-      - 5000:5000
+      - 3000:3000
     tty: true
     environment:
       DB_HOST=mongo
@@ -14,9 +14,9 @@
       - mongodb:/data/db
     state: started
 
-- name: Add backend to the network
+- name: Add client to the network
   docker_network:
       - name: mongo_net
         connected:
-          - yolo-backend
+          - yolo-frontend
         appends: true

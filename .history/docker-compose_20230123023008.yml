@@ -29,7 +29,7 @@
       - mongo_net
   
   backend:
-    image: namayiana/yolo-backend:v1.0.0
+    image: namayiana/yolo-backend:v1.0.1
     build: 
       context: backend
       dockerfile: ./Dockerfile

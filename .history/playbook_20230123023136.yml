@@ -4,8 +4,8 @@
   vars: 
     mongo_image: mongo
     Node_version: "16"
-    frontend_image: namayiana/yolo-frontend:v1.0.0
-    backend_image: namayiana/yolo-backend:v1.0.0 
+    frontend_image:  namayiana/yolo-frontend:v1.0.0
+    backend_image: namayiana/yolo-backend:v1.0.1 
    
   pre_tasks:
     - name: Update apt cache if needed.
