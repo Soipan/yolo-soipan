@@ -1,20 +1,15 @@
 
-            apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-              name: node-deployment
-            spec:
+         apiVersion: apps/v1
+         kind: Deployment
+         metadata:
+           name: backend
+           labels:
+             app: yolo
+         spec:
               # A deployment's specification:
               
               # 1. How many copies of each pod do we want?
               replicas: 3
-            
-              # 2. How do want to update the pods?
-              strategy: 
-                type: rollingUpdate
-                rollingUpdate: 
-                  maxSurge: 0
-                  maxUnavailable: 20%
             
               # 3. Which pods are managed by this deployment?
               selector:
@@ -38,3 +33,6 @@
                        - containerPort: 5000
                          name: http
                          protocol: TCP
+
+
+
