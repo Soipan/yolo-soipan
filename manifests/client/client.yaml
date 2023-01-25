@@ -32,7 +32,7 @@
                   containers:
                     - image: namayiana/yolo-frontend:v1.0.0
                       name: frontend-deployment
-                      imagePullPolicy: Never
+                      imagePullPolicy: Always 
                       ports:
                        - containerPort: 3000
                          name: http
