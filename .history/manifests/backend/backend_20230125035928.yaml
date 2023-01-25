@@ -9,7 +9,7 @@
               # A deployment's specification:
               
               # 1. How many copies of each pod do we want?
-              replicas: 2
+              replicas: 1
             
               # 3. Which pods are managed by this deployment?
               selector:

@@ -1,37 +1,40 @@
 
          apiVersion: apps/v1
+
          kind: Deployment
+
          metadata:
-           name: backend-deployment
+           name: frontend-deployment
            labels:
-             app: yolo-backend
+             app: yolo-frontend
          spec:
               # A deployment's specification:
               
               # 1. How many copies of each pod do we want?
-              replicas: 2
+              replicas: 1
             
-              # 3. Which pods are managed by this deployment?
+              # 2. Which pods are managed by this deployment?
               selector:
                 # This must match the labels we set on the pod!
                 matchLabels:
-                  deploy: yolo-pod
+                  deploy: frontend-pod
               
               # This template field is a regular pod configuration 
               # nested inside the deployment spec
               template:
                 metadata:
+                  name: frontend-pod
                   # Set labels on the pod.
                   # This is used in the deployment selector.
                   labels:
-                    deploy: yolo-pod
+                    deploy: frontend-pod
                 spec:
                   containers:
-                    - image: namayiana/yolo-backend:v1.0.0
-                      name: yolo-backend
+                    - image: namayiana/yolo-frontend:v1.0.0
+                      name: frontend-deployment
                       imagePullPolicy: Never
                       ports:
-                       - containerPort: 5000
+                       - containerPort: 3000
                          name: http
                          protocol: TCP
 

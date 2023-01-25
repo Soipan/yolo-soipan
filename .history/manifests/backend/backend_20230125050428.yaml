@@ -1,11 +1,10 @@
-
-         apiVersion: apps/v1
+    apiVersion: apps/v1
          kind: Deployment
          metadata:
            name: backend-deployment
            labels:
              app: yolo-backend
-         spec:
+    spec:
               # A deployment's specification:
               
               # 1. How many copies of each pod do we want?

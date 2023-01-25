@@ -4,7 +4,7 @@ metadata:
   name: "mongo-db"
 spec:
   serviceName: "mongo-db" 
-  replicas: 2
+  replicas: 1
   selector: 
     matchLabels: 
       app: "mongo-db"
@@ -21,11 +21,11 @@ spec:
           env: 
             - 
               name: "MONGO_INITDB_ROOT_USERNAME"
-              value: ""
+              value: "xxxx"
               
             -
               name: "MONGO_INITDB_ROOT_PASSWORD"
-              value: ""
+              value: "xxxx"
               
           ports: 
             - 
@@ -41,4 +41,4 @@ spec:
         - 
           name: "mongodb-persistent-storage"
           persistentVolumeClaim: 
-            claimName: "mongo-pvc"
+            claimName: "mongodb-pvc"
