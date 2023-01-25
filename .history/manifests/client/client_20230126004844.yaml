@@ -15,5 +15,3 @@ spec:
       containers:
       - name: frontend
         image: namayiana/yolo-kube
-        ports:
-        - containerPort: 80
